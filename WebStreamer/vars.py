@@ -28,7 +28,7 @@ class Var(object):
 
     DATABASE_URL = str(environ.get('DATABASE_URL'))
     UPDATES_CHANNEL = str(environ.get('UPDATES_CHANNEL', "Telegram"))
-    OWNER_ID = int(environ.get('OWNER_ID', '777000'))
+    OWNER_ID = [int(x.strip()) for x in environ.get('OWNER_ID', '777000').split(',')]
     SESSION_NAME = str(environ.get('SESSION_NAME', 'F2LxBot'))
     FORCE_UPDATES_CHANNEL = environ.get('FORCE_UPDATES_CHANNEL', False)
     FORCE_UPDATES_CHANNEL = True if str(FORCE_UPDATES_CHANNEL).lower() == "true" else False

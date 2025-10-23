@@ -94,7 +94,7 @@ async def info_handler(bot: Client, message: Message):
     if not await validate_user(message, lang):
         return
     i_cmd=message.text.split()
-    if (message.from_user.id == Var.OWNER_ID) and (len(i_cmd) > 1):
+    if (message.from_user.id in Var.OWNER_ID) and (len(i_cmd) > 1):
         message.from_user.id=int(i_cmd[1])
     user = await db.get_user(message.from_user.id)
     files=await db.total_files(message.from_user.id)

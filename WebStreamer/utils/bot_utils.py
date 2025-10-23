@@ -93,7 +93,7 @@ async def is_user_banned(message: Message, lang: Optional[Language] = None) -> b
             if not lang:
                 lang = Language(message)
             await message.reply_text(
-                text=lang.BAN_TEXT.format(Var.OWNER_ID),
+                text=lang.BAN_TEXT.format(", ".join(map(str, Var.OWNER_ID))),
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
             )
@@ -114,7 +114,7 @@ async def is_user_joined(message: Message, lang: Language) -> bool:
         member = await message._client.get_chat_member(Var.UPDATES_CHANNEL, message.chat.id)
         if getattr(member, "status", "").upper() == "BANNED":
             await message.reply_text(
-                text=lang.BAN_TEXT.format(Var.OWNER_ID),
+                text=lang.BAN_TEXT.format(", ".join(map(str, Var.OWNER_ID))),
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
             )
